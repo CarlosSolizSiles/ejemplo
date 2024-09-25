@@ -1,7 +1,9 @@
 [package]
-name = "ejemplo"
+name = "auto-complete-pdf"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
+autor = ""
 
 [dependencies]
 lopdf = "0.34.0"
+toml = "0.8.19"
