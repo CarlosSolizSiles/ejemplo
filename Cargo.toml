@@ -1,9 +1,11 @@
 [package]
 name = "auto-complete-pdf"
 version = "0.1.0"
-edition = "2024"
-autor = ""
+edition = "2021"
+autor = "Soliz Siles Carlos Daniel"
 
 [dependencies]
 lopdf = "0.34.0"
 toml = "0.8.19"
+serde = { version = "1.0.104", features = ["derive"] }
+serde_json = "1.0.48"

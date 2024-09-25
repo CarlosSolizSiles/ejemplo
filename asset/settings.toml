@@ -1,0 +1,45 @@
+[[static_texts]]
+text_id = "Nombre y Apellidos"
+coordinates = [82.5, 340.5]
+
+[[static_texts]]
+text_id = "GID"
+coordinates = [82.5, 333.5]
+
+[[static_texts]]
+text_id = "Ciudad"
+coordinates = [82.5, 326.65]
+
+[[static_texts]]
+text_id = "Fecha"
+coordinates = [171, 340.5]
+
+[[static_texts]]
+text_id = "Correo"
+coordinates = [171, 333.59]
+
+[[static_texts]]
+text_id = "Marca"
+coordinates = [78.9, 285.25]
+
+[[static_texts]]
+text_id = "Modelo"
+coordinates = [78.9, 278]
+
+[[static_texts]]
+text_id = "Serial"
+coordinates = [171.1, 285.4]
+
+[[static_texts]]
+text_id = "RAM"
+coordinates = [171.1, 278.4]
+
+[[static_texts]]
+text_id = "Disco"
+coordinates = [171.1, 271.4]
+
+[[dynamic_text]]
+text_id = "carlos"
+
+[[dynamic_text]]
+text_id = "juan"
