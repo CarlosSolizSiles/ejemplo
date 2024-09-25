@@ -1,109 +1,144 @@
 use lopdf::content::{Content, Operation};
 use lopdf::{Document, Object};
 use std::collections::BTreeMap;
+use std::fs::File;
+use std::io::{self, BufRead, BufReader};
 
-struct ItemText {
-    text: &'static str,
-    x: f32,
-    y: f32,
+// Estructura que representa un elemento de texto y su posición en el PDF
+struct TextElement {
+    text: String,
+    position_x: f32,
+    position_y: f32,
 }
 
-fn add_text(text: &str, x: f32, y: f32) -> Content {
-    let content = Content {
+// Función que genera el contenido PDF para insertar texto en una posición específica
+fn create_text_content(text: String, position_x: f32, position_y: f32) -> Content {
+    Content {
         operations: vec![
-            // Operación de movimiento a las coordenadas (100, 500)
+            // Operación para transformar la posición del texto
             Operation::new(
                 "Tm",
                 vec![2.into(), 0.into(), 0.into(), 2.into(), 0.into(), 0.into()],
             ),
-            // Selecciona la fuente estándar (Helvetica) con un tamaño de fuente más pequeño
-            Operation::new("Tf", vec!["A1".into(), 5.5.into()]), // Tamaño de la fuente reducido a 5
-            Operation::new("Td", vec![x.into(), y.into()]),
-            // Operation::new("Td", vec![83.into(), 340.5.into()]),
-            // Añade el texto
+            // Selección de la fuente Helvetica con un tamaño reducido
+            Operation::new("Tf", vec!["A1".into(), 5.5.into()]),
+            // Mover el cursor de escritura a las coordenadas especificadas
+            Operation::new("Td", vec![position_x.into(), position_y.into()]),
+            // Escribir el texto literal en la posición actual
             Operation::new("Tj", vec![Object::string_literal(text)]),
         ],
-    };
-    content
+    }
 }
 
-fn main() {
-    // Abre el PDF existente como plantilla
-    let mut doc = Document::load("Formato de Entrega PC_v2 6.pdf").unwrap();
-    // Obtén el mapa de páginas del documento
-    let pages: BTreeMap<u32, lopdf::ObjectId> = doc.get_pages();
+fn main() -> io::Result<()> {
+    // Abre el archivo
+    let file = File::open("data.txt")?;
 
-    // Obtenemos el ID de la primera página
-    let (_page_number, page_id) = pages.iter().next().unwrap(); // Aquí obtenemos la primera página
+    // Usa BufReader para leerlo línea por línea
+    let reader = BufReader::new(file);
 
-    let list_item_text = [
-        ItemText {
-            text: "Soliz Siles Carlos Daniel",
-            x: 83.0,
-            y: 340.0,
+    // Crea un vector para almacenar las líneas
+    let lines: Vec<String> = reader
+        .lines() // Obtén un iterador sobre las líneas
+        .collect::<Result<Vec<String>, _>>()?; // Colecta las líneas en un vector y maneja posibles errores
+
+    // Cargar el documento PDF como plantilla
+    let mut pdf_document = Document::load("asset/Formato de Entrega PC_v2 6.pdf").unwrap();
+    // Obtener las páginas del documento
+    let page_map: BTreeMap<u32, lopdf::ObjectId> = pdf_document.get_pages();
+
+    // Obtener el ID de la primera página
+    let (_page_number, page_id) = page_map.iter().next().unwrap();
+
+    let binding = lines[5].clone();
+    let reason_code = binding.as_str(); // Código que determina la razón de selección
+
+    // Definir el marcador para la razón seleccionada
+    let reason_marker = match reason_code {
+        "Instalación Nueva" => TextElement {
+            text: "X".to_string(),
+            position_x: 73.5,
+            position_y: 298.65,
         },
-        ItemText {
-            text: "PWOCM4Y2",
-            x: 83.0,
-            y: 333.5,
+        "Reasignación" => TextElement {
+            text: "X".to_string(),
+            position_x: 135.5,
+            position_y: 298.65,
         },
-        ItemText {
-            text: "Buenos Aires",
-            x: 83.0,
-            y: 326.65,
+        "Baja" => TextElement {
+            text: "X".to_string(),
+            position_x: 203.5,
+            position_y: 298.65,
         },
-        ItemText {
-            text: "24/09/2024",
-            x: 172.0,
-            y: 340.5,
+        _ => TextElement {
+            text: "".to_string(),
+            position_x: 0.0,
+            position_y: 0.0,
         },
-        ItemText {
-            text: "carlos.soliz@siemens.com",
-            x: 172.0,
-            y: 333.5,
+    };
+
+    // Lista de elementos de texto con sus posiciones correspondientes
+    let text_elements = [
+        TextElement {
+            text: lines[0].clone(),
+            position_x: 83.0,
+            position_y: 340.0,
         },
-        ItemText {
-            text: "Lenovo",
-            x: 80.0,
-            y: 285.25,
+        TextElement {
+            text: lines[1].clone(),
+            position_x: 83.0,
+            position_y: 333.5,
         },
-        ItemText {
-            text: "thinkpad L14 G4",
-            x: 80.0,
-            y: 278.0,
+        TextElement {
+            text: lines[2].clone(),
+            position_x: 83.0,
+            position_y: 326.65,
         },
-        ItemText {
-            text: "PWCM0QQQ",
-            x: 172.0,
-            y: 285.25,
+        TextElement {
+            text: lines[3].clone(),
+            position_x: 172.0,
+            position_y: 340.5,
         },
-        ItemText {
-            text: "32GB",
-            x: 172.0,
-            y: 278.0,
+        TextElement {
+            text: lines[4].clone(),
+            position_x: 172.0,
+            position_y: 333.5,
         },
-        ItemText {
-            text: "512GB",
-            x: 172.0,
-            y: 270.65,
+        TextElement {
+            text: lines[6].clone(),
+            position_x: 80.0,
+            position_y: 285.25,
         },
+        TextElement {
+            text: lines[7].clone(),
+            position_x: 80.0,
+            position_y: 278.0,
+        },
+        TextElement {
+            text: lines[8].clone(),
+            position_x: 172.0,
+            position_y: 285.25,
+        },
+        TextElement {
+            text: lines[9].clone(),
+            position_x: 172.0,
+            position_y: 278.0,
+        },
+        TextElement {
+            text: lines[10].clone(),
+            position_x: 172.0,
+            position_y: 270.65,
+        },
+        reason_marker, // Añadir el marcador de razón seleccionado
     ];
 
-    for item in list_item_text {
-        let content = add_text(&item.text, item.x, item.y);
-        doc.add_to_page_content(*page_id, content).unwrap();
+    // Agregar cada elemento de texto al contenido de la página del PDF
+    for element in text_elements {
+        let content = create_text_content(element.text, element.position_x, element.position_y);
+        pdf_document.add_to_page_content(*page_id, content).unwrap();
     }
 
- // // ! Crea un nuevo contenido para añadir texto
-    // let content = add_text("Lenovo", 80.0, 285.5);
-    // // Agrega el nuevo contenido a la página existente
-    // doc.add_to_page_content(*page_id, content).unwrap();
-
-    // // ! Crea un nuevo contenido para añadir texto
-    // let content = add_text("lenovo thinkpad L14 G4", 83.0, 272.5);
-    // // Agrega el nuevo contenido a la página existente
-    // doc.add_to_page_content(*page_id, content).unwrap();
-
-    // Guarda el archivo PDF modificado
-    doc.save("output_modificado.pdf").unwrap();
+    // Guardar el archivo PDF modificado
+    pdf_document.save("output_modified.pdf").unwrap();
+    Ok(())
 }
