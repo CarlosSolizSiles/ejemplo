@@ -1,0 +1,14 @@
+[date]
+"Nombre y Apellidos" = "Soliz Siles Carlos Daniel"
+"GID" = "user id"
+"Ciudad" = "Buenos Aires"
+"Fecha" = "25/09/2024"
+"Correo" = "carlos.soliz@siemens.com"
+"Marca" = "Lenovo"
+"Modelo" = "thinkpad L14 G4"
+"Serial" = "PWCM0QQQ"
+"RAM" = "32GB"
+"Disco" = "512GB"
+
+[[options]]
+option = "Baja"

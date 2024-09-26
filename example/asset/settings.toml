@@ -1,0 +1,57 @@
+[settings]
+name_file = "Serial"
+
+[[static_texts]]
+label_id = "Nombre y Apellidos"
+position = [164.5, 681]
+
+[[static_texts]]
+label_id = "GID"
+position = [164.5, 667]
+
+[[static_texts]]
+label_id = "Ciudad"
+position = [164.5, 653]
+
+[[static_texts]]
+label_id = "Fecha"
+position = [342, 681]
+
+[[static_texts]]
+label_id = "Correo"
+position = [342, 667]
+
+[[static_texts]]
+label_id = "Marca"
+position = [157.5, 570.75]
+
+[[static_texts]]
+label_id = "Modelo"
+position = [157.5, 556.75]
+
+[[static_texts]]
+label_id = "Serial"
+position = [342, 570.75]
+
+[[static_texts]]
+label_id = "RAM"
+position = [342, 556.75]
+
+[[static_texts]]
+label_id = "Disco"
+position = [342, 542.75]
+
+[[dynamic_text]]
+group_id = "Motivo"
+label_id = "Instalación Nueva"
+position = [146.5, 598.5]
+
+[[dynamic_text]]
+group_id = "Motivo"
+label_id = "Reasignación"
+position = [272.5, 598.5]
+
+[[dynamic_text]]
+group_id = "Motivo"
+label_id = "Baja"
+position = [406.5, 598.5]
