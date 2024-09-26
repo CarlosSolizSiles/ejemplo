@@ -9,3 +9,6 @@
 "Serial" = "PWCM0QQQ"
 "RAM" = "32GB"
 "Disco" = "512GB"
+
+[[options]]
+option = "Baja"

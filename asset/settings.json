@@ -1,46 +1,50 @@
 {
-    "static_texts": [
-      {
-        "text_id": "carlos 1",
-        "coordinates": [82.5, 340.5]
-      },
-      {
-        "text_id": "carlos 2",
-        "coordinates": [82.5, 333.5]
-      },
-      {
-        "text_id": "carlos 3",
-        "coordinates": [82.5, 326.65]
-      },
-      {
-        "text_id": "carlos 4",
-        "coordinates": [171, 340.5]
-      },
-      {
-        "text_id": "carlos 5",
-        "coordinates": [171, 333.59]
-      },
-      {
-        "text_id": "carlos 6",
-        "coordinates": [78.9, 285.25]
-      },
-      {
-        "text_id": "carlos 7",
-        "coordinates": [78.9, 278]
-      },
-      {
-        "text_id": "carlos 8",
-        "coordinates": [171.1, 285.4]
-      },
-      {
-        "text_id": "carlos 9",
-        "coordinates": [171.1, 278.4]
-      },
-      {
-        "text_id": "carlos 10",
-        "coordinates": [171.1, 271.4]
-      }
-    ],
-    "dynamic_text": [[{ "text_id": "carlos" }, { "text_id": "juan" }]]
-  }
-  
+  "static_texts": [
+    {
+      "text_id": "carlos 1",
+      "coordinates": [82.5, 340.5]
+    },
+    {
+      "text_id": "carlos 2",
+      "coordinates": [82.5, 333.5]
+    },
+    {
+      "text_id": "carlos 3",
+      "coordinates": [82.5, 326.65]
+    },
+    {
+      "text_id": "carlos 4",
+      "coordinates": [171, 340.5]
+    },
+    {
+      "text_id": "carlos 5",
+      "coordinates": [171, 333.59]
+    },
+    {
+      "text_id": "carlos 6",
+      "coordinates": [78.9, 285.25]
+    },
+    {
+      "text_id": "carlos 7",
+      "coordinates": [78.9, 278]
+    },
+    {
+      "text_id": "carlos 8",
+      "coordinates": [171.1, 285.4]
+    },
+    {
+      "text_id": "carlos 9",
+      "coordinates": [171.1, 278.4]
+    },
+    {
+      "text_id": "carlos 10",
+      "coordinates": [171.1, 271.4]
+    }
+  ],
+  "dynamic_text": [
+    [
+      { "text_id": "carlos" },
+      { "text_id": "juan" }
+    ]
+  ]
+}
